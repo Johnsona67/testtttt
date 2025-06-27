@@ -1,95 +1,190 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Diamond, Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import './Footer.css';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const footerLinks = {
+    shop: [
+      { name: 'Rings', path: '/shop?category=rings' },
+      { name: 'Necklaces', path: '/shop?category=necklaces' },
+      { name: 'Earrings', path: '/shop?category=earrings' },
+      { name: 'Bracelets', path: '/shop?category=bracelets' }
+    ],
+    company: [
+      { name: 'About Us', path: '/about' },
+      { name: 'Our Story', path: '/about' },
+      { name: 'Careers', path: '/careers' },
+      { name: 'Press', path: '/press' }
+    ],
+    support: [
+      { name: 'Contact Us', path: '/contact' },
+      { name: 'FAQ', path: '/faq' },
+      { name: 'Shipping', path: '/shipping' },
+      { name: 'Returns', path: '/returns' }
+    ]
+  };
+
+  const socialLinks = [
+    { icon: <Facebook size={20} />, url: 'https://facebook.com' },
+    { icon: <Twitter size={20} />, url: 'https://twitter.com' },
+    { icon: <Instagram size={20} />, url: 'https://instagram.com' }
+  ];
+
   return (
     <footer className="footer">
-      <div className="container">
-        <div className="footer-content">
-          {/* Company Info */}
-          <div className="footer-section">
-            <div className="footer-logo">
-              <span className="logo-text">Luxe</span>
-              <span className="logo-accent">Jewelry</span>
-            </div>
-            <p>
-              Crafting timeless elegance since 1995. We bring you the finest jewelry 
-              that celebrates life's most precious moments.
-            </p>
-            <div className="social-links">
-              <a href="#" className="social-link">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="social-link">
-                <Instagram size={20} />
-              </a>
-              <a href="#" className="social-link">
-                <Twitter size={20} />
-              </a>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div className="footer-section">
-            <h3>Quick Links</h3>
-            <ul className="footer-links">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/shop">Shop</Link></li>
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-            </ul>
-          </div>
-
-          {/* Categories */}
-          <div className="footer-section">
-            <h3>Categories</h3>
-            <ul className="footer-links">
-              <li><Link to="/shop?category=rings">Rings</Link></li>
-              <li><Link to="/shop?category=necklaces">Necklaces</Link></li>
-              <li><Link to="/shop?category=earrings">Earrings</Link></li>
-              <li><Link to="/shop?category=bracelets">Bracelets</Link></li>
-            </ul>
-          </div>
-
-          {/* Customer Service */}
-          <div className="footer-section">
-            <h3>Customer Service</h3>
-            <ul className="footer-links">
-              <li><a href="#">Shipping & Returns</a></li>
-              <li><a href="#">Size Guide</a></li>
-              <li><a href="#">Jewelry Care</a></li>
-              <li><a href="#">FAQ</a></li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div className="footer-section">
-            <h3>Contact Info</h3>
-            <div className="contact-info">
-              <div className="contact-item">
-                <MapPin size={16} />
-                <span>123 Luxury Lane, Beverly Hills, CA 90210</span>
+      <div className="footer-content">
+        <div className="container">
+          <div className="footer-grid">
+            {/* Brand Section */}
+            <motion.div
+              className="footer-brand"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Link to="/" className="footer-logo">
+                <Diamond className="logo-icon" />
+                <span>LuxeJewelry</span>
+              </Link>
+              <p>
+                Crafting timeless jewelry pieces that tell your unique story. 
+                For over three decades, we've been creating exceptional pieces 
+                that stand the test of time.
+              </p>
+              <div className="social-links">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-link"
+                    whileHover={{ y: -3, scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
               </div>
-              <div className="contact-item">
-                <Phone size={16} />
-                <span>+1 (555) 123-4567</span>
+            </motion.div>
+
+            {/* Shop Links */}
+            <motion.div
+              className="footer-links"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <h3>Shop</h3>
+              <ul>
+                {footerLinks.shop.map((link, index) => (
+                  <li key={index}>
+                    <Link to={link.path}>{link.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Company Links */}
+            <motion.div
+              className="footer-links"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h3>Company</h3>
+              <ul>
+                {footerLinks.company.map((link, index) => (
+                  <li key={index}>
+                    <Link to={link.path}>{link.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Support Links */}
+            <motion.div
+              className="footer-links"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <h3>Support</h3>
+              <ul>
+                {footerLinks.support.map((link, index) => (
+                  <li key={index}>
+                    <Link to={link.path}>{link.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Contact Info */}
+            <motion.div
+              className="footer-contact"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <h3>Contact</h3>
+              <div className="contact-info">
+                <div className="contact-item">
+                  <Mail size={16} />
+                  <span>info@luxejewelry.com</span>
+                </div>
+                <div className="contact-item">
+                  <Phone size={16} />
+                  <span>+1 (555) 123-4567</span>
+                </div>
+                <div className="contact-item">
+                  <MapPin size={16} />
+                  <span>123 Luxury Lane, Beverly Hills, CA 90210</span>
+                </div>
               </div>
-              <div className="contact-item">
-                <Mail size={16} />
-                <span>hello@luxejewelry.com</span>
-              </div>
-            </div>
+            </motion.div>
           </div>
+
+          {/* Newsletter */}
+          <motion.div
+            className="newsletter-section"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <div className="newsletter-content">
+              <h3>Stay Updated</h3>
+              <p>Subscribe to our newsletter for exclusive offers and new collections</p>
+              <form className="newsletter-form">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  required
+                />
+                <button type="submit">Subscribe</button>
+              </form>
+            </div>
+          </motion.div>
         </div>
+      </div>
 
-        {/* Bottom Bar */}
-        <div className="footer-bottom">
-          <div className="footer-bottom-content">
-            <p>&copy; 2024 Luxe Jewelry. All rights reserved.</p>
-            <div className="footer-bottom-links">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-              <a href="#">Cookie Policy</a>
+      {/* Bottom Bar */}
+      <div className="footer-bottom">
+        <div className="container">
+          <div className="bottom-content">
+            <p>&copy; {currentYear} LuxeJewelry. All rights reserved.</p>
+            <div className="bottom-links">
+              <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/terms">Terms of Service</Link>
             </div>
           </div>
         </div>

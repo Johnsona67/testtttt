@@ -1,98 +1,101 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ShoppingCart, Search, Menu, X, Heart } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ShoppingCart, Menu, X, Diamond } from 'lucide-react';
+import './Navbar.css';
 
-const Navbar = ({ cartCount, onCartClick }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
-  const menuItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Shop', path: '/shop' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' }
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+    { path: '/', label: 'Home' },
+    { path: '/shop', label: 'Shop' },
+    { path: '/about', label: 'About' },
+    { path: '/contact', label: 'Contact' }
   ];
 
   return (
-    <nav className="navbar">
-      <div className="container">
-        <div className="navbar-content">
-          {/* Logo */}
-          <Link to="/" className="navbar-logo">
-            <span className="logo-text">Luxe</span>
-            <span className="logo-accent">Jewelry</span>
-          </Link>
+    <motion.nav 
+      className={`navbar ${scrolled ? 'scrolled' : ''}`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <div className="nav-container">
+        <Link to="/" className="nav-logo">
+          <span>MergeAI</span>
+        </Link>
 
-          {/* Desktop Menu */}
-          <div className="navbar-menu desktop-menu">
-            {menuItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className="navbar-link"
-                onClick={() => setIsMenuOpen(false)}
+        <div className="nav-menu">
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+            >
+              <motion.span
+                whileHover={{ y: -2 }}
+                transition={{ duration: 0.2 }}
               >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-
-          {/* Search Bar */}
-          <div className="navbar-search">
-            <div className="search-container">
-              <Search size={20} className="search-icon" />
-              <input
-                type="text"
-                placeholder="Search jewelry..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="search-input"
-              />
-            </div>
-          </div>
-
-          {/* Right Side Icons */}
-          <div className="navbar-actions">
-            <button className="navbar-icon-btn">
-              <Heart size={20} />
-            </button>
-            <button 
-              className="navbar-icon-btn cart-btn"
-              onClick={onCartClick}
-            >
-              <ShoppingCart size={20} />
-              {cartCount > 0 && (
-                <span className="cart-badge">{cartCount}</span>
-              )}
-            </button>
-            
-            {/* Mobile Menu Button */}
-            <button
-              className="navbar-icon-btn mobile-menu-btn"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
+                {item.label}
+              </motion.span>
+            </Link>
+          ))}
         </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="mobile-menu">
-            {menuItems.map((item) => (
+        <div className="nav-actions">
+          <Link to="/cart" className="cart-icon">
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ShoppingCart />
+            </motion.div>
+          </Link>
+
+          <motion.button
+            className="mobile-menu-btn"
+            onClick={() => setIsOpen(!isOpen)}
+            whileTap={{ scale: 0.9 }}
+          >
+            {isOpen ? <X /> : <Menu />}
+          </motion.button>
+        </div>
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {navItems.map((item) => (
               <Link
-                key={item.name}
+                key={item.path}
                 to={item.path}
-                className="mobile-menu-link"
-                onClick={() => setIsMenuOpen(false)}
+                className={`mobile-nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                onClick={() => setIsOpen(false)}
               >
-                {item.name}
+                {item.label}
               </Link>
             ))}
-          </div>
+          </motion.div>
         )}
-      </div>
-    </nav>
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 
