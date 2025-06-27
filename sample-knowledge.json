@@ -1,0 +1,66 @@
+{
+  "questions": [
+    {
+      "question": "What are the best practices for responsive web design?",
+      "answer": "Responsive web design best practices include: 1) Use CSS Grid and Flexbox for layouts, 2) Implement mobile-first design approach, 3) Use relative units (rem, em, %) instead of fixed pixels, 4) Test on multiple devices and screen sizes, 5) Optimize images for different resolutions, 6) Use media queries effectively, 7) Ensure touch-friendly interface elements, 8) Maintain consistent typography hierarchy, 9) Optimize loading performance, 10) Consider accessibility guidelines.",
+      "category": "web-design",
+      "tags": ["responsive", "css", "mobile", "best-practices"]
+    },
+    {
+      "question": "How do I create a modern gradient background?",
+      "answer": "To create a modern gradient background, you can use CSS linear-gradient or radial-gradient. For a modern look, try: 1) Use multiple color stops, 2) Experiment with different angles (0deg to 360deg), 3) Use complementary or analogous colors, 4) Add transparency with rgba(), 5) Combine with backdrop-filter for glass effects. Example: background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);",
+      "category": "css",
+      "tags": ["gradient", "background", "modern", "design"]
+    },
+    {
+      "question": "What's the difference between serif and sans-serif fonts?",
+      "answer": "Serif fonts have small decorative strokes (serifs) at the ends of characters, giving them a more traditional, formal appearance. Examples include Times New Roman, Georgia, and Garamond. Sans-serif fonts lack these decorative strokes, appearing cleaner and more modern. Examples include Arial, Helvetica, and Roboto. Serif fonts are often used for headings and print media, while sans-serif fonts are popular for body text and digital interfaces.",
+      "category": "typography",
+      "tags": ["fonts", "serif", "sans-serif", "typography"]
+    },
+    {
+      "question": "How can I improve website loading speed?",
+      "answer": "To improve website loading speed: 1) Optimize and compress images, 2) Minify CSS, JavaScript, and HTML files, 3) Use a CDN for static assets, 4) Enable browser caching, 5) Reduce HTTP requests by combining files, 6) Use lazy loading for images, 7) Optimize your database queries, 8) Use modern image formats (WebP, AVIF), 9) Implement critical CSS, 10) Consider using a performance monitoring tool.",
+      "category": "performance",
+      "tags": ["speed", "optimization", "performance", "loading"]
+    },
+    {
+      "question": "What are the principles of good UI/UX design?",
+      "answer": "Good UI/UX design principles include: 1) User-centered design approach, 2) Consistency in design elements, 3) Clear visual hierarchy, 4) Intuitive navigation, 5) Accessibility for all users, 6) Fast and responsive interactions, 7) Clear feedback for user actions, 8) Minimal cognitive load, 9) Error prevention and recovery, 10) Aesthetic and minimalist design.",
+      "category": "ui-ux",
+      "tags": ["ui", "ux", "design", "principles", "user-experience"]
+    }
+  ],
+  "topics": [
+    {
+      "title": "Color Theory in Web Design",
+      "content": "Color theory is fundamental to web design. The color wheel consists of primary colors (red, blue, yellow), secondary colors (green, orange, purple), and tertiary colors. Complementary colors are opposite on the wheel and create high contrast. Analogous colors are adjacent and create harmony. Consider color psychology: blue conveys trust, red creates urgency, green represents growth, and yellow suggests optimism. Use color to guide user attention and create emotional responses.",
+      "category": "design",
+      "tags": ["color", "theory", "psychology", "design"]
+    },
+    {
+      "title": "CSS Grid vs Flexbox",
+      "content": "CSS Grid is a two-dimensional layout system for creating grid-based layouts. It's perfect for overall page layouts and complex arrangements. Flexbox is a one-dimensional layout system for creating flexible layouts in a single direction (row or column). Use Grid for page-level layouts and Flexbox for component-level layouts. Grid excels at creating complex, responsive layouts, while Flexbox is ideal for aligning and distributing space among items in a container.",
+      "category": "css",
+      "tags": ["css", "grid", "flexbox", "layout"]
+    },
+    {
+      "title": "JavaScript Best Practices",
+      "content": "JavaScript best practices include: 1) Use meaningful variable and function names, 2) Write modular, reusable code, 3) Handle errors properly with try-catch blocks, 4) Use modern ES6+ features (arrow functions, destructuring, template literals), 5) Avoid global variables, 6) Use strict mode ('use strict'), 7) Optimize performance with proper loops and data structures, 8) Write clean, readable code with proper indentation, 9) Use async/await for asynchronous operations, 10) Follow consistent coding conventions.",
+      "category": "javascript",
+      "tags": ["javascript", "best-practices", "coding", "es6"]
+    },
+    {
+      "title": "SEO Fundamentals",
+      "content": "SEO (Search Engine Optimization) fundamentals include: 1) Use descriptive, keyword-rich page titles, 2) Write compelling meta descriptions, 3) Use proper heading hierarchy (H1, H2, H3), 4) Optimize images with alt text and descriptive filenames, 5) Create clean, semantic HTML structure, 6) Improve page loading speed, 7) Make your site mobile-friendly, 8) Create quality, relevant content, 9) Use internal linking effectively, 10) Build quality backlinks from reputable sites.",
+      "category": "seo",
+      "tags": ["seo", "search", "optimization", "marketing"]
+    },
+    {
+      "title": "React Development Tips",
+      "content": "React development best practices: 1) Use functional components with hooks, 2) Keep components small and focused, 3) Use proper prop validation with PropTypes or TypeScript, 4) Implement proper state management (useState, useReducer, Context API), 5) Use React.memo for performance optimization, 6) Handle side effects properly with useEffect, 7) Use custom hooks for reusable logic, 8) Follow the single responsibility principle, 9) Use proper naming conventions, 10) Implement error boundaries for error handling.",
+      "category": "react",
+      "tags": ["react", "javascript", "frontend", "development"]
+    }
+  ]
+} 
